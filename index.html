@@ -32,7 +32,6 @@
         margin-bottom: 20px;
     }
 
-    /* Search Box */
     .search-box {
         width: 90%;
         margin: auto;
@@ -58,7 +57,6 @@
         width: 26px;
     }
 
-    /* Category */
     .category {
         display: flex;
         justify-content: center;
@@ -82,7 +80,6 @@
         font-weight: bold;
     }
 
-    /* Books Grid */
     .grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -95,6 +92,12 @@
         border-radius: 18px;
         padding: 10px;
         position: relative;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+    .book:hover {
+        transform: scale(1.03);
     }
 
     .book img {
@@ -115,7 +118,6 @@
         opacity: .8;
     }
 
-    /* NEW Badge */
     .badge {
         position: absolute;
         top: 8px;
@@ -127,25 +129,34 @@
         font-size: 12px;
     }
 
-    /* Bottom Navbar */
     .bottom-nav {
         position: fixed;
-        bottom: 15px;
+        bottom: 18px;
         left: 50%;
         transform: translateX(-50%);
-        background: #062a1c;
-        width: 90%;
-        padding: 14px;
-        border-radius: 40px;
+        width: 88%;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        border-radius: 35px;
+        padding: 14px 30px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        z-index: 99999;
+        border: 1px solid rgba(255,255,255,0.25);
     }
 
-    .bottom-nav img {
+    .bottom-nav a img {
         width: 30px;
-        opacity: .9;
+        height: 30px;
+        opacity: 0.9;
+        transition: .2s ease;
+    }
+
+    .bottom-nav a img:hover {
+        opacity: 1;
+        transform: scale(1.15);
     }
 </style>
 
@@ -153,7 +164,6 @@
 
 <body>
 
-<!-- Header -->
 <div class="header">
     <div class="title">ইসলামিক বইঘর লাইব্রেরি</div>
     <div class="subtitle">ইসলামি জ্ঞানের সম্পূর্ণ ডিজিটাল সংগ্রহশালা</div>
@@ -163,7 +173,6 @@
         <img src="https://cdn-icons-png.flaticon.com/512/149/149852.png">
     </div>
 
-    <!-- Categories -->
     <div class="category">
         <button class="active">সর্বশেষ</button>
         <button>কুরআন</button>
@@ -173,24 +182,27 @@
     </div>
 </div>
 
-<!-- Books -->
+<!-- BOOK GRID -->
 <div class="grid">
 
-    <div class="book">
+    <!-- Book 1 -->
+    <div class="book" onclick="window.open('https://your-pdf-link.com/quran.pdf', '_blank')">
         <span class="badge">NEW</span>
         <img src="https://i.ibb.co.com/bPRqsnH/book1.jpg">
         <div class="book-title">কুরআন শরীফ</div>
         <div class="book-cat">GENERAL</div>
     </div>
 
-    <div class="book">
+    <!-- Book 2 -->
+    <div class="book" onclick="window.open('https://your-pdf-link.com/khotoba.pdf', '_blank')">
         <span class="badge">NEW</span>
         <img src="https://i.ibb.co.com/7QmqMG1/book2.jpg">
         <div class="book-title">খোতবাতুর রাসূল</div>
         <div class="book-cat">GENERAL</div>
     </div>
 
-    <div class="book">
+    <!-- Book 3 -->
+    <div class="book" onclick="window.open('https://your-pdf-link.com/seerat.pdf', '_blank')">
         <span class="badge">NEW</span>
         <img src="https://i.ibb.co.com/0F9wm8G/book3.jpg">
         <div class="book-title">সীরাতুন নবী</div>
@@ -199,74 +211,16 @@
 
 </div>
 
-<!-- Bottom Navbar -->
+<!-- Bottom Navigation -->
 <div class="bottom-nav">
-    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png"> <!-- home -->
-    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"> <!-- grid -->
-    <img src="https://cdn-icons-png.flaticon.com/512/7321/7321769.png"> <!-- random -->
-    
-    <!-- Telegram -->
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/7321/7321769.png"></a>
+
     <a href="https://t.me/boibanglabox">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
     </a>
 </div>
 
 </body>
-</html>
-<!-- Beautiful Glass Bottom Navigation -->
-<style>
-.bottom-nav {
-    position: fixed;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 88%;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 35px;
-    padding: 14px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    z-index: 99999;
-    border: 1px solid rgba(255,255,255,0.25);
-}
-
-.bottom-nav a img {
-    width: 30px;
-    height: 30px;
-    opacity: 0.9;
-    transition: .2s ease;
-}
-
-.bottom-nav a img:hover {
-    opacity: 1;
-    transform: scale(1.15);
-}
-</style>
-
-<div class="bottom-nav">
-
-    <!-- Home -->
-    <a href="#">
-        <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png">
-    </a>
-
-    <!-- Categories -->
-    <a href="#">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png">
-    </a>
-
-    <!-- Random -->
-    <a href="#">
-        <img src="https://cdn-icons-png.flaticon.com/512/7321/7321769.png">
-    </a>
-
-    <!-- Telegram -->
-    <a href="https://t.me/boibanglabox">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
-    </a>
-
-    </div>
+    </html>
