@@ -1,122 +1,210 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Islamic Boi Gor</title>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ইসলামিক বইঘর</title>
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #003f2f;
-        color: white;
-    }
+  :root{
+    --bg:#022f25;
+    --panel:#063f33;
+    --accent:#ffd400;
+    --muted:#cfcfcf;
+    --card-border:#0b6f53;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;font-family:Arial, "Noto Sans Bengali", sans-serif;
+    background:linear-gradient(180deg,var(--bg),#01281f 60%);color:#fff;
+  }
 
-    /* Header */
-    .header {
-        background: linear-gradient(180deg, #003f2f, #00281d);
-        padding: 30px 20px;
-        text-align: center;
-        border-bottom: 2px solid #0a5b45;
-    }
-    .header h1 {
-        font-size: 28px;
-        font-weight: 700;
-        color: #ffe600;
-    }
+  /* header */
+  .header{
+    padding:28px 18px 18px;
+    text-align:left;
+    background:linear-gradient(90deg,#013b2f,#064b38);
+    border-bottom:1px solid rgba(255,255,255,0.02);
+  }
+  .brand{
+    display:flex;align-items:center;gap:12px;
+  }
+  .brand .logo{
+    width:48px;height:48px;border-radius:8px;background:linear-gradient(180deg,var(--accent),#ffb800);
+    display:flex;align-items:center;justify-content:center;color:#062e2a;font-weight:800;font-size:20px;
+  }
+  .brand h1{margin:0;font-size:22px;color:var(--accent);font-weight:800}
+  .subtitle{color:var(--muted);margin-top:8px;margin-left:60px;font-size:13px}
 
-    /* Card Grid */
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 20px;
-        padding: 20px;
-    }
+  /* search */
+  .hero{padding:18px}
+  .search-wrap{max-width:920px;margin:12px auto 18px;display:flex;justify-content:center}
+  .search{
+    width:100%;max-width:920px;background:rgba(0,0,0,0.35);padding:14px 18px;border-radius:40px;border:2px solid rgba(255,255,255,0.03);
+    display:flex;align-items:center;gap:12px;
+  }
+  .search input{flex:1;border:0;background:transparent;color:#eee;font-size:15px;outline:none}
+  .search button{background:var(--accent);border:0;padding:10px 12px;border-radius:999px;cursor:pointer}
 
-    .card {
-        background: #004a37;
-        border: 2px solid #0a6b50;
-        border-radius: 14px;
-        padding: 10px;
-        text-align: center;
-        transition: 0.2s;
-    }
-    .card:hover {
-        transform: scale(1.05);
-        background: #005f45;
-    }
-    .card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-    .card-title {
-        margin-top: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        color: #ffe600;
-    }
+  /* categories */
+  .filters{display:flex;gap:12px;justify-content:center;padding:6px 18px 18px}
+  .pill{background:rgba(0,0,0,0.45);padding:8px 14px;border-radius:999px;color:#ddd;cursor:pointer;border:2px solid rgba(255,255,255,0.02)}
+  .pill.active{background:var(--accent);color:#062e2a;font-weight:700;border-color:var(--card-border)}
 
-    /* Bottom Navigation */
-    .bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: #00281d;
-        padding: 12px 0;
-        display: flex;
-        justify-content: space-around;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        border: 2px solid #0b5f48;
-    }
+  /* grid */
+  .grid{padding:12px 14px 120px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;max-width:1100px;margin:0 auto}
+  .book-card{
+    background:var(--panel);border-radius:14px;padding:10px;border:2px solid var(--card-border);overflow:hidden;
+    display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.4);
+    transition:transform .18s,box-shadow .18s;
+  }
+  .book-card:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(0,0,0,0.6)}
+  .book-card img{width:100%;height:220px;object-fit:cover;border-radius:10px}
+  .book-title{width:100%;padding:8px 6px;text-align:left;font-weight:700;color:var(--accent);font-size:15px}
+  .book-cat{align-self:flex-start;padding-left:6px;color:#ffd;opacity:.9;font-size:12px;font-weight:700}
 
-    .bottom-nav a {
-        text-decoration: none;
-        color: white;
-        font-size: 14px;
-        text-align: center;
-    }
+  /* badges */
+  .badge-new{position:absolute;margin-top:-10px;margin-left:8px;background:#ff4b6e;color:#fff;padding:6px 8px;border-radius:8px;font-size:12px;font-weight:700}
+
+  /* modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+  .modal{background:#0a0a0a90;border-radius:14px;padding:18px;max-width:420px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,0.7);border:1px solid rgba(255,255,255,0.03)}
+  .modal img{width:120px;height:170px;object-fit:cover;border-radius:6px;display:block;margin:0 auto}
+  .modal h3{color:var(--accent);text-align:center;margin:10px 0 4px}
+  .modal .meta{text-align:center;color:var(--muted);margin-bottom:12px}
+  .modal .buttons{display:flex;gap:12px;justify-content:center;margin-top:8px}
+  .btn{padding:10px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+  .btn-read{background:var(--accent);color:#042822}
+  .btn-share{background:#111;color:#fff;border:2px solid rgba(255,255,255,0.05)}
+
+  /* bottom nav rounded */
+  .bottom{
+    position:fixed;left:50%;transform:translateX(-50%);bottom:14px;background:rgba(0,0,0,0.6);
+    border-radius:999px;padding:10px 22px;display:flex;gap:26px;align-items:center;z-index:70;border:2px solid rgba(255,255,255,0.02)
+  }
+  .bottom a{color:#fff;text-decoration:none;font-size:18px}
+
+  /* responsive tuning */
+  @media(min-width:980px){
+    .book-card img{height:260px}
+  }
+  @media(max-width:420px){
+    .book-card img{height:200px}
+    .header h1{font-size:20px}
+  }
 </style>
 </head>
-
 <body>
 
-    <!-- Header -->
-    <div class="header">
-        <h1>📚 Islamic Boi Gor</h1>
+  <header class="header">
+    <div class="brand">
+      <div class="logo">বই</div>
+      <div>
+        <h1>ইসলামিক বইঘর</h1>
+        <div class="subtitle">ইসলামিক জ্ঞান–সংগ্রহশালা</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="search-wrap">
+      <div class="search">
+        <input id="q" placeholder="বইয়ের নাম বা লেখক লিখুন..." />
+        <button onclick="doSearch()">🔍</button>
+      </div>
     </div>
 
-    <!-- Books -->
-    <div class="grid">
+    <div class="filters">
+      <div class="pill active" data-filter="all" onclick="filter(this)">সর্বশেষ</div>
+      <div class="pill" data-filter="list" onclick="filter(this)">তালিকা</div>
+      <div class="pill" data-filter="topic" onclick="filter(this)">বিষয়</div>
+      <div class="pill" data-filter="fav" onclick="filter(this)">♥</div>
+    </div>
+  </section>
 
-        <div class="card">
-            <img src="https://i.imgur.com/9xFjKxa.jpeg" alt="Book">
-            <div class="card-title">ইসলামি বিশ্বকোষ - ১ম খণ্ড</div>
-        </div>
-
-        <div class="card">
-            <img src="https://i.imgur.com/9xFjKxa.jpeg" alt="Book">
-            <div class="card-title">ইসলামি বিশ্বকোষ - ২য় খণ্ড</div>
-        </div>
-
-        <div class="card">
-            <img src="https://i.imgur.com/9xFjKxa.jpeg" alt="Book">
-            <div class="card-title">ইসলামি বিশ্বকোষ - ৩য় খণ্ড</div>
-        </div>
-
+  <!-- grid -->
+  <main class="grid" id="grid">
+    <!-- BOOK ITEMS -->
+    <!-- Example book-card: copy this block to add more books, change data-pdf and img src + title -->
+    <div class="book-card" data-pdf="books/kitab1.pdf" onclick="openModal(this)">
+      <div style="position:relative;width:100%">
+        <div class="badge-new">NEW</div>
+        <img src="covers/kitab1.jpg" alt="cover">
+      </div>
+      <div class="book-title">৯৯২৭_ইসলামি_বিশ্বকোষ</div>
+      <div class="book-cat">GENERAL</div>
     </div>
 
-    <!-- Bottom Navbar -->
-    <div class="bottom-nav">
-        <a href="#">🏠 Home</a>
-        <a href="#">📚 Books</a>
-        <a href="#">⬇️ Download</a>
-        <a href="#">📨 Telegram</a>
+    <div class="book-card" data-pdf="books/kitab2.pdf" onclick="openModal(this)">
+      <div style="position:relative;width:100%">
+        <img src="covers/kitab2.jpg" alt="cover">
+      </div>
+      <div class="book-title">৯৯২৬_ইসলামি_বিশ্বকোষ</div>
+      <div class="book-cat">GENERAL</div>
     </div>
+
+    <div class="book-card" data-pdf="books/kitab3.pdf" onclick="openModal(this)">
+      <div style="position:relative;width:100%">
+        <img src="covers/kitab3.jpg" alt="cover">
+      </div>
+      <div class="book-title">৯৯২৫_ইসলামি_বিশ্বকোষ</div>
+      <div class="book-cat">GENERAL</div>
+    </div>
+    <!-- END BOOK ITEMS -->
+  </main>
+
+  <!-- modal -->
+  <div id="modalBg" class="modal-bg" onclick="closeModal(event)">
+    <div class="modal" role="dialog" onclick="event.stopPropagation()">
+      <img id="mcover" src="" alt="cover">
+      <h3 id="mtitle">Book title</h3>
+      <div class="meta" id="mcat">Category</div>
+      <div class="buttons">
+        <button class="btn btn-read" id="readBtn">📖 পড়ুন</button>
+        <button class="btn btn-share" id="shareBtn">🔗 শেয়ার</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- bottom nav -->
+  <nav class="bottom">
+    <a href="#">🏠</a>
+    <a href="#">⚙️</a>
+    <a href="#">✉️</a>
+  </nav>
+
+<script>
+  function doSearch(){
+    const q=document.getElementById('q').value.trim().toLowerCase();
+    const cards=[...document.querySelectorAll('.book-card')];
+    if(!q){cards.forEach(c=>c.style.display='flex');return;}
+    cards.forEach(c=>{
+      const t=c.querySelector('.book-title').innerText.toLowerCase();
+      c.style.display = t.includes(q) ? 'flex' : 'none';
+    });
+  }
+
+  function filter(el){
+    document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+    el.classList.add('active');
+    const f=el.dataset.filter;
+    // simple demo: just show all for now (you can extend by category)
+    if(f==='all'){document.querySelectorAll('.book-card').forEach(c=>c.style.display='flex');}
+  }
+
+  function openModal(card){
+    const pdf=card.dataset.pdf || '#';
+    const img=card.querySelector('img').src;
+    const title=card.querySelector('.book-title').innerText;
+    const cat=card.querySelector('.book-cat').innerText;
+    document.getElementById('mcover').src=img;
+    document.getElementById('mtitle').innerText=title;
+    document.getElementById('mcat').innerText=cat;
+    document.getElementById('readBtn').onclick=()=>{ window.open(pdf,'_blank'); };
+    document.getElementById('shareBtn').onclick=()=>{ navigator.share ? navigator.share({title, url:location.href}) : prompt('Copy link', location.href); };
+    document.getElementById('modalBg').style.display='flex';
+  }
+  function closeModal(e){ if(e.target.id==='modalBg') document.getElementById('modalBg').style.display='none'; }
+</script>
 
 </body>
-</html>
+        </html>
