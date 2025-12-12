@@ -2,255 +2,214 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ইসলামিক বইঘর লাইব্রেরি</title>
 
 <style>
-body{
-  margin:0;
-  font-family: "Noto Sans Bengali", sans-serif;
-  background:#012014;
-  color:white;
-}
+    body {
+        margin: 0;
+        font-family: sans-serif;
+        background: #013220;
+        color: white;
+    }
 
-/* Top Logo Section */
-.top-bar{
-  background:linear-gradient(135deg,#00170f,#002c1c);
-  padding:18px 15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.top-title{
-  font-size:22px;
-  font-weight:bold;
-  color:#f7d70a;
-  display:flex;
-  align-items:center;
-}
-.top-title span{
-  margin-left:8px;
-}
-.join-btn{
-  background:#f7d70a;
-  color:black;
-  padding:8px 14px;
-  border-radius:50px;
-  font-size:15px;
-  font-weight:bold;
-}
+    .header {
+        padding: 20px;
+        text-align: center;
+        background: linear-gradient(#013220, #024c33);
+    }
 
-/* Hero Title */
-.hero{
-  text-align:center;
-  padding:30px 10px;
-}
-.hero h1{
-  font-size:34px;
-  font-weight:bold;
-  color:#ffe55c;
-}
-.hero p{
-  font-size:16px;
-  opacity:.85;
-  margin-top:8px;
-}
+    .title {
+        font-size: 38px;
+        font-weight: 800;
+        margin-top: 20px;
+        color: #ffe955;
+    }
 
-/* Search Box */
-.search-box{
-  width:90%;
-  margin:auto;
-  margin-top:5px;
-  background:#02291a;
-  border:2px solid #054b30;
-  border-radius:40px;
-  padding:12px 18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.search-box input{
-  background:none;
-  border:none;
-  color:white;
-  outline:none;
-  font-size:16px;
-  width:85%;
-}
-.search-box input::placeholder{
-  color:#c0c0c0;
-}
-.search-icon{
-  font-size:20px;
-  color:#f7d70a;
-}
+    .subtitle {
+        font-size: 16px;
+        opacity: .9;
+        margin-bottom: 20px;
+    }
 
-/* Category Tags */
-.cat-row{
-  margin-top:20px;
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-.cat-btn{
-  background:#033423;
-  padding:8px 18px;
-  border-radius:30px;
-  border:1px solid #065d3f;
-  font-size:15px;
-}
+    /* Search Box */
+    .search-box {
+        width: 90%;
+        margin: auto;
+        background: #082b1f;
+        border: 2px solid #0f5132;
+        padding: 12px 20px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-/* Filter Row */
-.filter-row{
-  margin-top:15px;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:12px;
-}
-.filter-active{
-  background:#f7d70a;
-  color:black;
-  padding:8px 20px;
-  border-radius:30px;
-  font-weight:bold;
-}
-.filter-btn{
-  background:#022b1c;
-  padding:8px 20px;
-  border-radius:30px;
-  border:1px solid #055032;
-}
+    .search-box input {
+        width: 80%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        color: white;
+    }
 
-/* Books Grid */
-.book-grid{
-  padding:15px;
-  display:grid;
-  grid-template-columns: repeat(2,1fr);
-  gap:14px;
-}
-.book-card{
-  background:#00311f;
-  border-radius:15px;
-  padding:10px;
-  position:relative;
-}
-.book-card img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius:12px;
-}
-.ribbon{
-  position:absolute;
-  left:0;
-  top:0;
-  background:red;
-  padding:6px 12px;
-  font-size:12px;
-  font-weight:bold;
-  border-radius:0 0 10px 0;
-}
-.book-title{
-  margin-top:8px;
-  font-size:14px;
-  font-weight:bold;
-}
-.cat-text{
-  margin-top:3px;
-  font-size:12px;
-  color:#ffd700;
-}
+    .search-box img {
+        width: 26px;
+    }
 
-/* Bottom Floating Navigation */
-.bottom-nav{
-  position:fixed;
-  bottom:12px;
-  left:50%;
-  transform:translateX(-50%);
-  width:85%;
-  background:#001c12;
-  padding:12px;
-  border-radius:40px;
-  display:flex;
-  justify-content:space-around;
-  box-shadow:0 0 15px #000;
-}
-.bottom-nav a{
-  color:white;
-  text-align:center;
-  font-size:22px;
-  text-decoration:none;
-}
-.home-active{
-  color:#f7d70a;
-}
+    /* Category */
+    .category {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .category button {
+        padding: 8px 20px;
+        background: transparent;
+        border: 1px solid #0f5132;
+        border-radius: 30px;
+        color: white;
+        font-size: 15px;
+    }
+
+    .category .active {
+        background: #ffe955;
+        color: black;
+        font-weight: bold;
+    }
+
+    /* Books Grid */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 20px;
+    }
+
+    .book {
+        background: #09311f;
+        border-radius: 18px;
+        padding: 10px;
+        position: relative;
+    }
+
+    .book img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .book-title {
+        margin-top: 8px;
+        font-weight: bold;
+        color: #ffe955;
+    }
+
+    .book-cat {
+        font-size: 13px;
+        opacity: .8;
+    }
+
+    /* NEW Badge */
+    .badge {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: red;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 8px;
+        font-size: 12px;
+    }
+
+    /* Bottom Navbar */
+    .bottom-nav {
+        position: fixed;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #062a1c;
+        width: 90%;
+        padding: 14px;
+        border-radius: 40px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .bottom-nav img {
+        width: 30px;
+        opacity: .9;
+    }
 </style>
+
 </head>
 
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar">
-  <div class="top-title">📘 <span>ইসলামিক বইঘর</span></div>
-  <div class="join-btn">Join</div>
-</div>
+<!-- Header -->
+<div class="header">
+    <div class="title">ইসলামিক বইঘর লাইব্রেরি</div>
+    <div class="subtitle">ইসলামি জ্ঞানের সম্পূর্ণ ডিজিটাল সংগ্রহশালা</div>
 
-<!-- Hero Section -->
-<div class="hero">
-  <h1>ইসলামিক বইঘর লাইব্রেরি</h1>
-  <p>ইসলামিক জ্ঞানের ডিজিটাল সংগ্রহশালা</p>
-</div>
+    <div class="search-box">
+        <input type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন...">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149852.png">
+    </div>
 
-<!-- Search -->
-<div class="search-box">
-  <input placeholder="বই, লেখক বা বিষয় খুঁজুন...">
-  <div class="search-icon">🔍</div>
-</div>
-
-<!-- Category -->
-<div class="cat-row">
-  <div class="cat-btn">কুরআন</div>
-  <div class="cat-btn">হাদিস</div>
-  <div class="cat-btn">ইতিহাস</div>
-  <div class="cat-btn">উপন্যাস</div>
-</div>
-
-<!-- Filters -->
-<div class="filter-row">
-  <div class="filter-active">সর্বশেষ</div>
-  <div class="filter-btn">বই</div>
-  <div class="filter-btn">লেখক</div>
-  <div class="filter-btn">বিষয়</div>
+    <!-- Categories -->
+    <div class="category">
+        <button class="active">সর্বশেষ</button>
+        <button>কুরআন</button>
+        <button>হাদিস</button>
+        <button>ইতিহাস</button>
+        <button>উপন্যাস</button>
+    </div>
 </div>
 
 <!-- Books -->
-<div class="book-grid">
-  <div class="book-card">
-    <span class="ribbon">NEW</span>
-    <img src="img/book1.jpg">
-    <div class="book-title">সহীহ বুখারী</div>
-    <div class="cat-text">Hadith</div>
-  </div>
+<div class="grid">
 
-  <div class="book-card">
-    <span class="ribbon">NEW</span>
-    <img src="img/book2.jpg">
-    <div class="book-title">রিয়াযুস সালেহীন</div>
-    <div class="cat-text">Hadith</div>
-  </div>
+    <div class="book">
+        <span class="badge">NEW</span>
+        <img src="https://i.ibb.co.com/bPRqsnH/book1.jpg">
+        <div class="book-title">কুরআন শরীফ</div>
+        <div class="book-cat">GENERAL</div>
+    </div>
+
+    <div class="book">
+        <span class="badge">NEW</span>
+        <img src="https://i.ibb.co.com/7QmqMG1/book2.jpg">
+        <div class="book-title">খোতবাতুর রাসূল</div>
+        <div class="book-cat">GENERAL</div>
+    </div>
+
+    <div class="book">
+        <span class="badge">NEW</span>
+        <img src="https://i.ibb.co.com/0F9wm8G/book3.jpg">
+        <div class="book-title">সীরাতুন নবী</div>
+        <div class="book-cat">GENERAL</div>
+    </div>
 
 </div>
 
-<!-- Bottom Navigation -->
+<!-- Bottom Navbar -->
 <div class="bottom-nav">
-  <a class="home-active">🏠</a>
-  <a>📚</a>
-  <a>🎲</a>
-  <a>✉</a>
+    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png"> <!-- home -->
+    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"> <!-- grid -->
+    <img src="https://cdn-icons-png.flaticon.com/512/7321/7321769.png"> <!-- random -->
+    
+    <!-- Telegram -->
+    <a href="https://t.me/boibanglabox">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
+    </a>
 </div>
 
 </body>
-      </html>
+</html>
