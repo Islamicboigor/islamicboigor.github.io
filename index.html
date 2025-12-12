@@ -1,64 +1,173 @@
-<!DOCTYPE html><html lang="bn">
+<!DOCTYPE html>
+<html lang="bn">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ইসলামিক বইঘর লাইব্রেরী</title>
+
 <style>
-body{font-family:sans-serif;margin:0;background:#f3f6fa;}
-header{text-align:center;padding:20px;background:linear-gradient(45deg,#0055aa,#0099dd);color:white;}
-#searchInput{width:90%;padding:12px;border-radius:10px;border:none;margin-top:10px;}
-.books{padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;}
-.card{background:white;padding:10px;border-radius:12px;box-shadow:0 3px 10px #0001;text-align:center;}
-.card img{width:100%;border-radius:10px;}
-.download{display:block;background:#008d2f;color:white;padding:8px;margin-top:8px;border-radius:8px;text-decoration:none;}
-.bottom-menu{position:fixed;bottom:0;width:100%;background:white;display:flex;justify-content:space-around;border-top:1px solid #ddd;padding:12px 0;}
-.bottom-menu a{text-decoration:none;color:#444;font-size:18px;}
-.active{color:#008d2f;font-weight:bold;}
+body {
+    background: #003a2c;
+    margin: 0;
+    font-family: Arial;
+    color: #fff;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 25px 10px;
+    background: #004d3a;
+}
+.header h1 {
+    color: #ffcc00;
+    margin: 0;
+    font-size: 28px;
+}
+.tagline {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #d9ffd9;
+}
+
+/* Search */
+.search-box {
+    padding: 12px;
+    text-align: center;
+}
+.search-box input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+}
+
+/* Books Grid */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-gap: 15px;
+    padding: 15px;
+}
+
+.book {
+    background: #004d3a;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px #00261c;
+}
+
+.book img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.book-title {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #ffea9e;
+}
+
+/* Bottom Navigation */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #00261c;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+}
+.navbar a {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+}
+.navbar span {
+    display: block;
+    font-size: 20px;
+}
+
 </style>
 </head>
+
 <body>
-<header>
-<h1>ইসলামিক বইঘর লাইব্রেরী</h1>
-<p>সেরা ইসলামিক বইয়ের ডিজিটাল লাইব্রেরি</p>
-<input type="text" id="searchInput" placeholder="বই খুঁজুন…" onkeyup="searchBooks()" />
-</header><div id="bookContainer" class="books"></div><nav class="bottom-menu">
-<a class="active">🏠 Home</a>
-<a href="#">📚 Books</a>
-<a href="https://t.me/boibanglabox">📩 Telegram</a>
-</nav><script>
-let books = [
-  {
-    title: "ইসলামি বিশ্বকোষ - ১ম খণ্ড",
-    image: "img/book1.jpg",
-    pdf: "https://t.me/boibanglabox/2230",
-    category: "General"
-  },
-  {
-    title: "খোতবাতুর রাসূল",
-    image: "img/book2.jpg",
-    pdf: "pdf/book2.pdf",
-    category: "Aqeedah"
-  }
+
+<header class="header">
+    <h1>📚 ইসলামিক বইঘর লাইব্রেরী</h1>
+    <p class="tagline">সেরা ইসলামিক বইয়ের ডিজিটাল লাইব্রেরি</p>
+</header>
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="বই সার্চ করুন...">
+</div>
+
+<div id="bookContainer" class="book-grid"></div>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <a href="#"><span>🏠</span> Home</a>
+    <a href="#"><span>📚</span> Books</a>
+    <a href="#"><span>⬇</span> Download</a>
+    <a href="https://t.me/yourchannel" target="_blank"><span>✉</span> Telegram</a>
+</div>
+
+<script>
+// ======== Book Data List ========
+const books = [
+    {
+        title: "সহীহ বুখারী ১ম খণ্ড",
+        image: "https://i.imgur.com/OnjQWmE.jpeg",
+        link: "#"
+    },
+    {
+        title: "রিয়াদুস সালেহীন",
+        image: "https://i.imgur.com/2Q8yDFk.jpeg",
+        link: "#"
+    },
+    {
+        title: "আদ্দুররুল মানসুর",
+        image: "https://i.imgur.com/M8ZnEoB.jpeg",
+        link: "#"
+    }
 ];
 
-displayBooks(books);
+// ======== Load Books ========
+function loadBooks() {
+    const container = document.getElementById("bookContainer");
+    container.innerHTML = "";
 
-function searchBooks(){
-  let text=document.getElementById("searchInput").value.toLowerCase();
-  let result=books.filter(b=>b.title.toLowerCase().includes(text));
-  displayBooks(result);
+    books.forEach(book => {
+        container.innerHTML += `
+            <div class="book">
+                <img src="${book.image}">
+                <div class="book-title">${book.title}</div>
+                <a href="${book.link}">
+                    <button style="margin-top:10px;padding:7px 15px;border:none;border-radius:5px;background:#ffcc00;color:#003a2c;font-weight:bold;">
+                        Download
+                    </button>
+                </a>
+            </div>
+        `;
+    });
 }
+loadBooks();
 
-function displayBooks(list){
-  let box=document.getElementById("bookContainer");
-  box.innerHTML="";
-  list.forEach(book=>{
-    box.innerHTML+=`
-    <div class="card">
-      <img src="${book.image}" />
-      <h3>${book.title}</h3>
-      <a href="${book.pdf}" download class="download">📥 Download</a>
-    </div>`;
-  });
-}
-</script></body>
-</html>
+// ======== Search System ========
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    let value = this.value.toLowerCase();
+    let booksDiv = document.querySelectorAll(".book");
+
+    booksDiv.forEach(book => {
+        let title = book.querySelector(".book-title").innerText.toLowerCase();
+        book.style.display = title.includes(value) ? "block" : "none";
+    });
+});
+</script>
+
+</body>
+  </html>
