@@ -1,71 +1,118 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Islamic Boi Gor - Islamic PDF Library</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Boi Gor - Islamic PDF Library</title>
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f8ff;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-    header {
-        background: #0d6efd;
-        color: white;
-        padding: 20px 0;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    .container {
-        padding: 20px;
-    }
-    .book {
-        background: white;
-        padding: 15px;
-        margin: 10px auto;
-        width: 90%;
-        max-width: 400px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 10px 15px;
-        background: #198754;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-</style>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #033d2d;
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(to right, #02291f, #044b36);
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0px 3px 10px rgba(0,0,0,0.5);
+        }
+
+        .header h1 {
+            font-size: 26px;
+            margin: 0;
+            color: #ffd700;
+        }
+
+        /* Book Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .book {
+            background: #064b38;
+            border: 2px solid #0a6f55;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 8px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+
+        .book:hover {
+            transform: scale(1.05);
+        }
+
+        .book img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .book-title {
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        /* Bottom Navbar */
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #02291f;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-around;
+            border-top: 2px solid #0a6f55;
+        }
+
+        .nav-item {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+
+    </style>
 </head>
-
 <body>
 
-<header>
-    📚 Islamic Boi Gor – PDF Library
-</header>
-
-<div class="container">
-    <h2>Welcome to Islamic PDF Collection</h2>
-    <p>Download authentic Islamic books (PDF) for free.</p>
-
-    <div class="book">
-        <h3>📘 অদ্বিতীয় সাম্রাজ্য – ১ম খণ্ড</h3>
-        <a class="btn" href="#">Download PDF</a>
+    <div class="header">
+        <h1>📚 Islamic Boi Gor</h1>
     </div>
 
-    <div class="book">
-        <h3>📗 ইসলামের ব্যাপকতা – ডঃ ইউসুফ আল কারযাভী</h3>
-        <a class="btn" href="#">Download PDF</a>
+    <div class="grid">
+        <!-- Book Card 1 -->
+        <div class="book">
+            <img src="https://via.placeholder.com/300x400?text=Book" alt="Book">
+            <div class="book-title">ইসলামি বিশ্বকোষ - ১ম খণ্ড</div>
+        </div>
+
+        <!-- Book Card 2 -->
+        <div class="book">
+            <img src="https://via.placeholder.com/300x400?text=Book" alt="Book">
+            <div class="book-title">ইসলামি বিশ্বকোষ - ২য় খণ্ড</div>
+        </div>
+
+        <!-- Book Card 3 -->
+        <div class="book">
+            <img src="https://via.placeholder.com/300x400?text=Book" alt="Book">
+            <div class="book-title">ইসলামি বিশ্বকোষ - ৩য় খণ্ড</div>
+        </div>
     </div>
 
-</div>
+    <div class="navbar">
+        <div class="nav-item">🏠 Home</div>
+        <div class="nav-item">📚 Books</div>
+        <div class="nav-item">📥 Download</div>
+        <div class="nav-item">📨 Telegram</div>
+    </div>
 
 </body>
-  </html>
+    </html>
