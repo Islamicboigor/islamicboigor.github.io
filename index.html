@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -21,53 +23,64 @@ body {
 }
 .header h1 {
     color: #ffcc00;
-    margin: 0;
     font-size: 28px;
+    margin: 0;
 }
 .tagline {
-    margin-top: 5px;
-    font-size: 16px;
+    font-size: 15px;
     color: #d9ffd9;
 }
 
-/* Search */
+/* Search Box */
 .search-box {
-    padding: 12px;
+    padding: 15px;
     text-align: center;
 }
 .search-box input {
     width: 90%;
     padding: 12px;
-    border-radius: 8px;
     border: none;
+    border-radius: 8px;
     font-size: 18px;
 }
 
-/* Books Grid */
+/* BOOK GRID – 3 ITEMS PER ROW */
 .book-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    grid-gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
     padding: 15px;
 }
 
+/* Book Card */
 .book {
     background: #004d3a;
-    padding: 12px;
+    padding: 10px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 0 10px #00261c;
+    box-shadow: 0 0 8px #001a14;
 }
-
 .book img {
     width: 100%;
+    height: 120px;
+    object-fit: cover;
     border-radius: 8px;
 }
-
 .book-title {
-    margin-top: 10px;
-    font-size: 16px;
+    margin-top: 6px;
+    font-size: 14px;
     color: #ffea9e;
+}
+
+/* Download Button */
+.book button {
+    background: #ffcc00;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-top: 6px;
+    color: #003a2c;
+    font-weight: bold;
 }
 
 /* Bottom Navigation */
@@ -79,19 +92,13 @@ body {
     background: #00261c;
     display: flex;
     justify-content: space-around;
-    padding: 12px 0;
+    padding: 10px 0;
 }
 .navbar a {
-    color: white;
-    text-align: center;
-    font-size: 14px;
+    color: #fff;
     text-decoration: none;
+    text-align: center;
 }
-.navbar span {
-    display: block;
-    font-size: 20px;
-}
-
 </style>
 </head>
 
@@ -102,22 +109,25 @@ body {
     <p class="tagline">সেরা ইসলামিক বইয়ের ডিজিটাল লাইব্রেরি</p>
 </header>
 
+<!-- Search -->
 <div class="search-box">
     <input type="text" id="searchInput" placeholder="বই সার্চ করুন...">
 </div>
 
+<!-- BOOKS -->
 <div id="bookContainer" class="book-grid"></div>
 
-<!-- Navigation Bar -->
+<!-- Bottom Navigation -->
 <div class="navbar">
-    <a href="#"><span>🏠</span> Home</a>
-    <a href="#"><span>📚</span> Books</a>
-    <a href="#"><span>⬇</span> Download</a>
-    <a href="https://t.me/yourchannel" target="_blank"><span>✉</span> Telegram</a>
+    <a href="#">🏠 Home</a>
+    <a href="#">📚 Books</a>
+    <a href="#">⬇ Download</a>
+    <a href="#">✉ Telegram</a>
 </div>
 
+
 <script>
-// ======== Book Data List ========
+// ======== Book Database (Unlimited Add) ========
 const books = [
     {
         title: "সহীহ বুখারী ১ম খণ্ড",
@@ -133,6 +143,16 @@ const books = [
         title: "আদ্দুররুল মানসুর",
         image: "https://i.imgur.com/M8ZnEoB.jpeg",
         link: "#"
+    },
+    {
+        title: "মাসনুন দোয়া",
+        image: "https://i.imgur.com/someImage.jpeg",
+        link: "#"
+    },
+    {
+        title: "হাদিস শরিফ",
+        image: "https://i.imgur.com/someImage2.jpeg",
+        link: "#"
     }
 ];
 
@@ -146,28 +166,24 @@ function loadBooks() {
             <div class="book">
                 <img src="${book.image}">
                 <div class="book-title">${book.title}</div>
-                <a href="${book.link}">
-                    <button style="margin-top:10px;padding:7px 15px;border:none;border-radius:5px;background:#ffcc00;color:#003a2c;font-weight:bold;">
-                        Download
-                    </button>
-                </a>
+                <button onclick="window.location.href='${book.link}'">Download</button>
             </div>
         `;
     });
 }
 loadBooks();
 
-// ======== Search System ========
+// ======== Search ========
 document.getElementById("searchInput").addEventListener("keyup", function() {
     let value = this.value.toLowerCase();
-    let booksDiv = document.querySelectorAll(".book");
+    let cards = document.querySelectorAll(".book");
 
-    booksDiv.forEach(book => {
-        let title = book.querySelector(".book-title").innerText.toLowerCase();
-        book.style.display = title.includes(value) ? "block" : "none";
+    cards.forEach(card => {
+        let title = card.querySelector(".book-title").innerText.toLowerCase();
+        card.style.display = title.includes(value) ? "block" : "none";
     });
 });
 </script>
 
 </body>
-  </html>
+</html>
