@@ -199,17 +199,61 @@
 
 </div>
 
-<!-- Bottom Navbar -->
+<!-- Bottom Navigation Bar -->
+<style>
+.bottom-nav {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #062a1c;
+    width: 88%;
+    padding: 14px 25px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+
+.bottom-nav a, .bottom-nav img {
+    width: 32px;
+    height: 32px;
+}
+
+/* icon style */
+.bottom-nav img {
+    opacity: 0.90;
+    transition: .2s;
+}
+
+.bottom-nav img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+</style>
+
 <div class="bottom-nav">
-    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png"> <!-- home -->
-    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"> <!-- grid -->
-    <img src="https://cdn-icons-png.flaticon.com/512/7321/7321769.png"> <!-- random -->
-    
+
+    <!-- Home -->
+    <a href="#">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
+    </a>
+
+    <!-- Categories -->
+    <a href="#">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png">
+    </a>
+
+    <!-- Random book -->
+    <a href="#">
+        <img src="https://cdn-icons-png.flaticon.com/512/7321/7321769.png">
+    </a>
+
     <!-- Telegram -->
     <a href="https://t.me/boibanglabox">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
     </a>
-</div>
 
-</body>
-</html>
+</div>
