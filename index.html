@@ -1,113 +1,102 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Islamic Boi Gor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইসলামিক বইঘর</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #003b2d;
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e8f7f2;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Header */
-.header {
-    padding: 20px;
-    background: #004d3c;
-    text-align: center;
-    color: yellow;
-    font-size: 28px;
-    font-weight: bold;
-}
+        h2 {
+            text-align: center;
+            padding: 15px;
+            background: #00695c;
+            color: white;
+            margin: 0;
+            font-size: 28px;
+        }
 
-/* Book Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-    padding: 20px;
-}
+        #bookContainer {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
 
-/* Book Card */
-.card {
-    background: #004b39;
-    border: 2px solid #007a5c;
-    border-radius: 16px;
-    padding: 10px;
-    text-align: center;
-    color: yellow;
-}
+        .card {
+            background: #004d40;
+            padding: 12px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            box-shadow: 0px 5px 12px rgba(0,0,0,0.2);
+        }
 
-/* Book Image */
-.card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 12px;
-}
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
 
-/* Book Title */
-.card-title {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-}
+        .card h3 {
+            font-size: 17px;
+            margin-top: 8px;
+            color: #a7ffeb;
+        }
 
-/* Bottom Nav */
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #003c2d;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    color: white;
-    border-top: 2px solid #00644d;
-}
+        .btn {
+            padding: 10px;
+            border-radius: 6px;
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+        }
 
-.nav-item {
-    text-align: center;
-    font-size: 14px;
-}
-</style>
+        .read-btn {
+            background: #00bfa5;
+            color: white;
+        }
+
+        .download-btn {
+            background: #0277bd;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- Header -->
-<div class="header">📚 Islamic Boi Gor</div>
+<h2>📚 ইসলামিক বইঘর</h2>
 
-<!-- Book Section -->
-<div class="grid">
+<div id="bookContainer"></div>
 
-    <div class="card">
-        <img src="https://i.imgur.com/1Xwz0S9.jpeg">
-        <div class="card-title">ইসলামি বিশ্বকোষ - ১ম খণ্ড</div>
-    </div>
+<script>
+fetch("books.json")
+  .then(res => res.json())
+  .then(data => {
+      let html = "";
+      data.forEach(book => {
+          html += `
+              <div class="card">
+                  <img src="${book.image}">
+                  <h3>${book.title}</h3>
 
-    <div class="card">
-        <img src="https://i.imgur.com/1Xwz0S9.jpeg">
-        <div class="card-title">ইসলামি বিশ্বকোষ - ২য় খণ্ড</div>
-    </div>
+                  <a class="btn read-btn" href="${book.pdf}" target="_blank">📖 পড়ুন</a>
+                  <a class="btn download-btn" href="${book.pdf}" download>⬇️ ডাউনলোড</a>
+              </div>
+          `;
+      });
 
-    <div class="card">
-        <img src="https://i.imgur.com/1Xwz0S9.jpeg">
-        <div class="card-title">ইসলামি বিশ্বকোষ - ৩য় খণ্ড</div>
-    </div>
-
-</div>
-
-<!-- Bottom Navigation -->
-<div class="bottom-nav">
-    <div class="nav-item">🏠 Home</div>
-    <div class="nav-item">📚 Books</div>
-    <div class="nav-item">⬇️ Download</div>
-    <div class="nav-item">✉️ Telegram</div>
-</div>
+      document.getElementById("bookContainer").innerHTML = html;
+  });
+</script>
 
 </body>
 </html>
