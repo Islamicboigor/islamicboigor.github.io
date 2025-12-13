@@ -1,226 +1,225 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ইসলামিক বইঘর লাইব্রেরি</title>
-
-<style>
-    body {
-        margin: 0;
-        font-family: sans-serif;
-        background: #013220;
-        color: white;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ইসলামিক বইঘর লাইব্রেরী</title>
+  <style>
+    *{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#3a4f1c,#000);
+      color:#fff;
     }
-
-    .header {
-        padding: 20px;
-        text-align: center;
-        background: linear-gradient(#013220, #024c33);
+    .header{
+      padding:30px 16px 20px;
+      text-align:center;
     }
-
-    .title {
-        font-size: 38px;
-        font-weight: 800;
-        margin-top: 20px;
-        color: #ffe955;
+    .header h1{
+      margin:0;
+      font-size:28px;
+      font-weight:700;
     }
-
-    .subtitle {
-        font-size: 16px;
-        opacity: .9;
-        margin-bottom: 20px;
+    .header p{
+      margin:8px 0 0;
+      opacity:.85;
+      font-size:14px;
     }
-
-    .search-box {
-        width: 90%;
-        margin: auto;
-        background: #082b1f;
-        border: 2px solid #0f5132;
-        padding: 12px 20px;
-        border-radius: 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .search-box{
+      margin:20px auto 10px;
+      max-width:360px;
+      display:flex;
+      background:#111;
+      border-radius:30px;
+      padding:10px 14px;
+      align-items:center;
     }
-
-    .search-box input {
-        width: 80%;
-        background: transparent;
-        border: none;
-        outline: none;
-        font-size: 16px;
-        color: white;
+    .search-box input{
+      flex:1;
+      background:transparent;
+      border:none;
+      outline:none;
+      color:#fff;
+      font-size:15px;
     }
-
-    .search-box img {
-        width: 26px;
+    .search-box span{
+      color:#f5c542;
+      font-size:18px;
     }
-
-    .category {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 25px;
-        flex-wrap: wrap;
+    .tabs{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin:20px 0;
     }
-
-    .category button {
-        padding: 8px 20px;
-        background: transparent;
-        border: 1px solid #0f5132;
-        border-radius: 30px;
-        color: white;
-        font-size: 15px;
+    .tab{
+      padding:8px 16px;
+      background:#222;
+      border-radius:20px;
+      font-size:14px;
+      color:#ddd;
     }
-
-    .category .active {
-        background: #ffe955;
-        color: black;
-        font-weight: bold;
+    .tab.active{
+      background:#1f7a4a;
+      color:#fff;
     }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        padding: 20px;
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      padding:0 14px 90px;
     }
-
-    .book {
-        background: #09311f;
-        border-radius: 18px;
-        padding: 10px;
-        position: relative;
-        cursor: pointer;
-        transition: .2s;
+    .card{
+      background:#1a1a1a;
+      border-radius:16px;
+      padding:12px;
+      position:relative;
+      cursor:pointer;
     }
-
-    .book:hover {
-        transform: scale(1.03);
+    .card img{
+      width:100%;
+      border-radius:12px;
     }
-
-    .book img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 10px;
+    .badge{
+      position:absolute;
+      top:10px;
+      left:10px;
+      background:#ff3b3b;
+      color:#fff;
+      font-size:11px;
+      padding:3px 8px;
+      border-radius:10px;
     }
-
-    .book-title {
-        margin-top: 8px;
-        font-weight: bold;
-        color: #ffe955;
+    .title{
+      margin-top:8px;
+      font-size:14px;
+      font-weight:600;
     }
-
-    .book-cat {
-        font-size: 13px;
-        opacity: .8;
+    .cat{
+      font-size:12px;
+      color:#f5c542;
+      margin-top:2px;
     }
-
-    .badge {
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        background: red;
-        color: white;
-        padding: 3px 10px;
-        border-radius: 8px;
-        font-size: 12px;
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.7);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:10;
     }
-
-    .bottom-nav {
-        position: fixed;
-        bottom: 18px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 88%;
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(12px);
-        border-radius: 35px;
-        padding: 14px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        z-index: 99999;
-        border: 1px solid rgba(255,255,255,0.25);
+    .modal-box{
+      background:#1a1a1a;
+      width:90%;
+      max-width:340px;
+      border-radius:18px;
+      padding:16px;
+      text-align:center;
     }
-
-    .bottom-nav a img {
-        width: 30px;
-        height: 30px;
-        opacity: 0.9;
-        transition: .2s ease;
+    .modal-box img{
+      width:160px;
+      border-radius:12px;
     }
-
-    .bottom-nav a img:hover {
-        opacity: 1;
-        transform: scale(1.15);
+    .modal-box h3{
+      margin:12px 0 6px;
+      font-size:16px;
     }
-</style>
-
+    .modal-box p{
+      margin:0 0 14px;
+      font-size:13px;
+      color:#f5c542;
+    }
+    .btns{
+      display:flex;
+      gap:10px;
+    }
+    .btn{
+      flex:1;
+      padding:10px;
+      border-radius:30px;
+      border:none;
+      font-size:14px;
+      cursor:pointer;
+    }
+    .read{
+      background:#1f7a4a;
+      color:#fff;
+    }
+    .share{
+      background:#111;
+      color:#fff;
+    }
+    .close{
+      position:absolute;
+      top:10px;
+      right:14px;
+      font-size:20px;
+      cursor:pointer;
+    }
+    .bottom{
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      background:#111;
+      padding:10px 0;
+      display:flex;
+      justify-content:space-around;
+      border-radius:20px 20px 0 0;
+    }
+    .bottom a{
+      color:#aaa;
+      text-decoration:none;
+      font-size:22px;
+    }
+    .bottom a.active{color:#1f7a4a}
+  </style>
 </head>
-
-<body>
-
-<div class="header">
-    <div class="title">ইসলামিক বইঘর লাইব্রেরি</div>
-    <div class="subtitle">ইসলামি জ্ঞানের সম্পূর্ণ ডিজিটাল সংগ্রহশালা</div>
-
-    <div class="search-box">
-        <input type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন...">
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149852.png">
-    </div>
-
-    <div class="category">
-        <button class="active">সর্বশেষ</button>
-        <button>কুরআন</button>
-        <button>হাদিস</button>
-        <button>ইতিহাস</button>
-        <button>উপন্যাস</button>
-    </div>
+<body>  <div class="header">
+    <h1>ইসলামিক বইঘর লাইব্রেরী</h1>
+    <p>কুরআন, হাদীস ও ইসলামী বইয়ের ডিজিটাল ভাণ্ডার</p><div class="search-box">
+  <input type="text" placeholder="বইয়ের নাম বা লেখক...">
+  <span>🔍</span>
 </div>
 
-<!-- BOOK GRID -->
-<div class="grid">
-
-    <!-- Book 1 -->
-    <div class="book" onclick="window.open('https://your-pdf-link.com/quran.pdf', '_blank')">
-        <span class="badge">NEW</span>
-        <img src="https://i.ibb.co.com/bPRqsnH/book1.jpg">
-        <div class="book-title">কুরআন শরীফ</div>
-        <div class="book-cat">GENERAL</div>
+  </div>  <div class="tabs">
+    <div class="tab active">সর্বশেষ</div>
+    <div class="tab">তালিকা</div>
+    <div class="tab">বিষয়</div>
+    <div class="tab">❤️</div>
+  </div>  <div class="grid">
+    <div class="card" onclick="openBook()">
+      <span class="badge">NEW</span>
+      <img src="https://i.ibb.co/7rX1zV4/book1.jpg">
+      <div class="title">খুতাবাতুর রাসূল ﷺ</div>
+      <div class="cat">GENERAL</div>
     </div>
-
-    <!-- Book 2 -->
-    <div class="book" onclick="window.open('<div class="book" onclick="window.open('https://raw.githubusercontent.com/Islamicboigor/islamicboigor.github.io/97013a7fca8eb8ec1f6cb870922198b88b73e501/%E0%A6%95%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%AE%E0%A6%A4%E0%A7%87%E0%A6%B0%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A6%A4%20%5BIslamic%20boi%20hub%5D.pdf', '_blank')">')">
-        <span class="badge">NEW</span>
-        <img src="https://i.ibb.co.com/7QmqMG1/book2.jpg">
-        <div class="book-title">খোতবাতুর রাসূল</div>
-        <div class="book-cat">GENERAL</div>
+    <div class="card" onclick="openBook()">
+      <span class="badge">NEW</span>
+      <img src="https://i.ibb.co/FxXG1nt/book2.jpg">
+      <div class="title">কুরআন শিক্ষা</div>
+      <div class="cat">QURAN</div>
     </div>
-
-    <!-- Book 3 -->
-    <div class="book" onclick="window.open('https://your-pdf-link.com/seerat.pdf', '_blank')">
-        <span class="badge">NEW</span>
-        <img src="https://i.ibb.co.com/0F9wm8G/book3.jpg">
-        <div class="book-title">সীরাতুন নবী</div>
-        <div class="book-cat">GENERAL</div>
+  </div>  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="close" onclick="closeBook()">✕</div>
+      <img src="https://i.ibb.co/7rX1zV4/book1.jpg">
+      <h3>খুতাবাতুর রাসূল ﷺ</h3>
+      <p>GENERAL</p>
+      <div class="btns">
+        <button class="btn read" onclick="readPDF()">📖 পড়ুন</button>
+        <button class="btn share" onclick="share()">🔗 শেয়ার</button>
+      </div>
     </div>
-
-</div>
-
-<!-- Bottom Navigation -->
-<div class="bottom-nav">
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/7321/7321769.png"></a>
-
-    <a href="https://t.me/boibanglabox">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png">
-    </a>
-</div>
-
-</body>
+  </div>  <div class="bottom">
+    <a class="active">🏠</a>
+    <a>⚙️</a>
+    <a href="https://t.me/boibanglabox">📨</a>
+  </div><script>
+  const pdfLink = "https://islamicboigor.github.io/কিয়ামতের%20আলামত%20[Islamic%20boi%20hub].pdf";
+  function openBook(){document.getElementById('modal').style.display='flex'}
+  function closeBook(){document.getElementById('modal').style.display='none'}
+  function readPDF(){window.open(pdfLink,'_blank')}
+  function share(){navigator.share?navigator.share({title:'ইসলামিক বই',url:pdfLink}):alert('Share not supported')}
+</script></body>
     </html>
